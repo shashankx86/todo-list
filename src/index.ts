@@ -36,13 +36,14 @@ function handleSubmit(e: SubmitEvent) {
     text: input.value,
     completed: false,
   };
-  createTodo(newTodo);
+  
   todos.push(newTodo);
   saveTodos();
+  createTodo(newTodo, todos.length - 1);  //passes an index to the todo so that it can be identified and deleted later
   input.value = "";
 }
 
-function createTodo(todo: Todo) {
+function createTodo(todo: Todo, index: number) {
   const newLI = document.createElement("LI");
   const checkbox = document.createElement("input");
   checkbox.type = "checkbox";
@@ -51,8 +52,15 @@ function createTodo(todo: Todo) {
     todo.completed = checkbox.checked;
     saveTodos();
   })
-  newLI.append(todo.text);
-  newLI.append(checkbox);
+
+  const deleteButton = document.createElement("button");
+  deleteButton.textContent = "Delete";
+  deleteButton.addEventListener("click", function () {
+    todos.splice(index, 1);
+    newLI.remove();
+    saveTodos();
+  });
+  newLI.append(todo.text, checkbox, deleteButton);
   list.append(newLI);
 }
 
