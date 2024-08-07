@@ -60,7 +60,7 @@ function createTodo(todo: Todo, index: number) {
     newLI.remove();
     saveTodos();
   });
-  newLI.append(todo.text, checkbox, deleteButton);
+  newLI.append(checkbox, todo.text, deleteButton);
   list.append(newLI);
 }
 

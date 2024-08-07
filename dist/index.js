@@ -42,7 +42,7 @@ function createTodo(todo, index) {
         newLI.remove();
         saveTodos();
     });
-    newLI.append(todo.text, checkbox, deleteButton);
+    newLI.append(checkbox, todo.text, deleteButton);
     list.append(newLI);
 }
 form.addEventListener("submit", handleSubmit);
