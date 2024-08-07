@@ -1,4 +1,23 @@
 "use strict";
-console.log("HELLO!!!!!!");
+// Aproach 1 - use question mark in case btn can't be found.
+// const btn = document.getElementById("btn");
+// btn?.addEventListener("click", function() {
+//     alert("CLICKED!!!");
+// });
+// Approach 2 - use exclamation point (no-null assertion operator)
 const btn = document.getElementById("btn");
-console.log(btn);
+const input = document.getElementById("todoinput");
+const form = document.querySelector("form");
+const list = document.getElementById("todolist");
+function handleSubmit(e) {
+    e.preventDefault();
+    const newTodoText = input.value;
+    const newLI = document.createElement("LI");
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    newLI.append(newTodoText);
+    newLI.append(checkbox);
+    list.append(newLI);
+    input.value = "";
+}
+form.addEventListener("submit", handleSubmit);
